@@ -5,6 +5,7 @@ import { route } from './route/router';
 import { AppDataSource } from './DbConfig';
 const app = express();
 dotenv.config();
+app.use(express.json());
 AppDataSource.initialize().then(() => {
     console.log(`DataSource initialized !`);
 }).catch((err: any) => {
