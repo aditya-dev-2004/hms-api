@@ -33,6 +33,9 @@ export class Patient extends BaseEntity {
     @Column({ name: "isActive", type: "boolean", default: null })
     isActive: any
 
+    @Column({name:"profile",type:"text",default:null})
+    profile:any
+
     @Column({ name: "token", type: "varchar", length: 255, default: null })
     token: any
 

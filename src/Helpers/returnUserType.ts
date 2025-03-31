@@ -7,7 +7,7 @@ export const returnUserType=(userType:any)=>{
        return Admin;
     }else if(userType==='doctor'){
      return Doctor
-    }else{
+    }else if(userType==='patient'){
        return  Patient
     }
 }
