@@ -24,7 +24,7 @@ export class AppointmentTbl extends BaseEntity {
     @Column({ name: "timeSlot", type: "timestamp" })
     timeSlot: any;
 
-    @Column({ name: "payment", type: "decimal", precision: 10, scale: 2, default: null, })
+    @Column({ name: "payment", type: "varchar", default: null, })
     payment: any
 
     @Column({ name: "status", type: "varchar", length: 50, default: null })

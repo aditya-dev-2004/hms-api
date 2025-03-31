@@ -15,7 +15,7 @@ export class Patient extends BaseEntity {
     @Column({ name: "email", type: "varchar", length: 100, default: null })
     email: any
 
-    @Column({ name: "contact", type: "varchar", length: 10, default: null })
+    @Column({ name: "contact", type: "varchar", length: 20, default: null })
     contact: any
 
     @Column({ name: "password", type: "varchar", length: 255, default: "Test@1234" })

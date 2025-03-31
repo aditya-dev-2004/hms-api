@@ -36,7 +36,7 @@ export class Doctor extends BaseEntity{
     @Column({name:"profile",type:"text",default:null})
     profile:any
 
-    @Column({name:"contact",type:"varchar", length:10, default:null})
+    @Column({name:"contact",type:"varchar", length:20, default:null})
     contact:any
 
     @Column({name:"password",type:"varchar", length:255, default:"Test@1234"})
