@@ -9,7 +9,7 @@ export const userLoginController = async (req: any, res: any) => {
         const tableName: any = await returnUserType(userType)
         const result = await tableName.findOne({ where: { email, password } });
         const jwtToken = await jsonwebtoken.sign({ id: result?.id, email: result?.email }, `${process.env.JWTSECRET}`, { expiresIn: '2h' })
-        const finalResult = { ...result, jwtToken }
+        const finalResult = { ...result, jwtToken,userType}
         if (result) {
             return createResponse(res, 200, "Login success", finalResult, true, false)
         } else {
