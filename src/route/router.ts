@@ -1,14 +1,19 @@
 import express from 'express';
-import { userLoginController, userRegisterController } from '../Contollers/CommonController/LoginFunctionController';
-export const route=express.Router();
- //common route
-route.post("/login",userLoginController)
-route.post("/register",userRegisterController)
- //admin route
+import {
+    ForgetPassswordController,
+    userLoginController,
+    userRegisterController
+} from '../Contollers/CommonController/LoginFunctionController';
+
+export const route = express.Router();
+//common route
+route.post("/login", userLoginController)
+route.post("/register", userRegisterController);
+route.post('/forget-password', ForgetPassswordController)
+//admin route
 
 
-  //doctor route
+//doctor route
 
 
-   //pate route\
-   
+//pate route\
