@@ -54,10 +54,26 @@ export const ForgetPassswordController=async(req:any,res:any)=>{
   const isExist=await TblName.findOne({where:{email}})
    if(isExist){ 
     const token= createRandomString(); 
-    await TblName.update({email:email},{ token})
+    await TblName.update({email:email},{ token,updatedAt:new Date()})
     await  sendForgetPasswordMail(email,token)
     return   createResponse(res, 200, "Mail send Successfull !",[], true, false);
    }else{
     return   createResponse(res, 404, "User Not Found!",[], false, true);
 }
 }
+
+export const resetPassswordController=async(req:any,res:any)=>{
+    const {token, password,userType} =req.body;
+    const TblName: any = await returnUserType(userType); 
+     const isTokenNotExpired= await TblName.findOne({where:{token}});
+     if(isTokenNotExpired){
+       const tokenIssueTime= isTokenNotExpired?.updatedAt.getTime()
+       const cuurentTime=Date.now();
+       console.log(tokenIssueTime,cuurentTime);
+         
+         res.send("ok")
+     }else{
+        return   createResponse(res, 404, "Token has been Expired!",[], false, true);
+     }
+   
+  }
