@@ -12,8 +12,9 @@ route.post("/login", userLoginController)
 route.post("/register", userRegisterController);
 route.post('/forget-password', ForgetPassswordController);
 route.post('/reset-password', resetPassswordController);
-//admin route
 
+//admin route
+route.post('/admin-add-department', resetPassswordController);
 
 //doctor route
 
