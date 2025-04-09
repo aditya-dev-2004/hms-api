@@ -12,5 +12,5 @@ export const getDoctorBydepartmentIdController = async (req: any, res: any) => {
         }
     } catch (err: any) {
         return createResponse(res, 500, "Internal server error", [], false, true)
-    }
+    }  ///dfgfd
 }
