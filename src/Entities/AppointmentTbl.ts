@@ -25,7 +25,7 @@ export class AppointmentTbl extends BaseEntity {
     @Column({ name: "payment", type: "varchar", default: null, })
     payment: any
 
-    @Column({ name: "status", type: "varchar", length: 50, default: null })
+    @Column({ name: "status", type: "varchar", length: 50, default:" In-progress "})
     status: any
 
     @Column({ name: "appointmentType", type: "varchar", length: 50, default: null })
