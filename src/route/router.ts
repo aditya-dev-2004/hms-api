@@ -11,6 +11,7 @@ import {
  } from '../Contollers/AdminController/DepartmentController';
 import { verifyToken } from '../middleware/Verifytoken';
 import { getDoctorBydepartmentIdController } from '../Contollers/DoctorController/DepartMentController';
+import { bookAppointmentController } from '../Contollers/PatientController/BookAppointmentController';
 
 export const route = express.Router();
 //common route
@@ -25,4 +26,5 @@ route.get('/admin-get-department',verifyToken, getDepartmentController);
 //doctor route
 route.get('/get-doctor-by-departmentId',verifyToken, getDoctorBydepartmentIdController);
 
-//pate route\
+//patient route\
+route.post('/doctor-appointment-book',verifyToken, bookAppointmentController);
