@@ -4,6 +4,7 @@ import { createResponse } from "../../Helpers/createResponse";
 export const bookAppointmentController = async (req: any, res: any) => {
     try {
         const { patientId,departmentId,doctorId,disease,symptoms,payment,appointmentType,date,startTime }=req.body;
+        
        const result= await  AppointmentTbl.save({ patientId,departmentId,doctorId,disease,symptoms,payment,appointmentType,date ,startTime}) 
        return createResponse(res, 201, "Appointment Booked Successfully !", result, true, false)
     } catch (err: any) {
