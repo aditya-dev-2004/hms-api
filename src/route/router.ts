@@ -11,7 +11,7 @@ import {
  } from '../Contollers/AdminController/DepartmentController';
 import { verifyToken } from '../middleware/Verifytoken';
 import { getDoctorBydepartmentIdController } from '../Contollers/DoctorController/DepartMentController';
-import { bookAppointmentController } from '../Contollers/PatientController/BookAppointmentController';
+import { addapController, GetaddapByPatientController } from '../Contollers/PatientController/BookAppointmentController';
 
 export const route = express.Router();
 //common route
@@ -27,4 +27,5 @@ route.get('/admin-get-department',verifyToken, getDepartmentController);
 route.get('/get-doctor-by-departmentId',verifyToken, getDoctorBydepartmentIdController);
 
 //patient route\
-route.post('/doctor-appointment-book',verifyToken, bookAppointmentController);
+route.post('/doctor-appointment-book',verifyToken, addapController);
+route.get('/get-appointment-by-patient',verifyToken, GetaddapByPatientController);  
