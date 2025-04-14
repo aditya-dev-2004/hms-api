@@ -67,7 +67,7 @@ export const addapController = async (req: any, res: any) => {
   }
 };
 
-//dd export const GetaddapByPatientController = async (req: any, res: any) => {
+// export const GetaddapByPatientController = async (req: any, res: any) => {
 //   try {
 //     const { patientId } = req.query;
 //     const result = await AppointmentTbl.find({ where: { patientId: patientId } })
