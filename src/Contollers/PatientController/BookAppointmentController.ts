@@ -67,7 +67,7 @@ export const addapController = async (req: any, res: any) => {
   }
 };
 
-// export const GetaddapByPatientController = async (req: any, res: any) => {
+//dd export const GetaddapByPatientController = async (req: any, res: any) => {
 //   try {
 //     const { patientId } = req.query;
 //     const result = await AppointmentTbl.find({ where: { patientId: patientId } })
@@ -87,7 +87,7 @@ export const GetaddapByPatientController = async (req: any, res: any) => {
         "apptbl.*",
         // "patient.*"
       ])
-      .leftJoin(Patient,"patient","apptbl.patientId=patient.uuid")
+      .leftJoin(Patient,"patient","apptbl.patientId=patient.id")
 
       const result=await queryBuilder.getRawMany()
       console.log(result,"@@@@");
