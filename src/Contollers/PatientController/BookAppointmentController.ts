@@ -2,6 +2,7 @@ import moment from "moment";
 import { Doctor } from "../../Entities/DoctorTbl";
 import { AppointmentTbl } from "../../Entities/AppointmentTbl";
 import { createResponse } from "../../Helpers/createResponse";
+import { Patient } from "../../Entities/PatientTbl";
 
 export const addapController = async (req: any, res: any) => {
   try {
@@ -66,17 +67,31 @@ export const addapController = async (req: any, res: any) => {
   }
 };
 
+// export const GetaddapByPatientController = async (req: any, res: any) => {
+//   try {
+//     const { patientId } = req.query;
+//     const result = await AppointmentTbl.find({ where: { patientId: patientId } })
+//     if (result?.length > 0) {
+//       return createResponse(res, 200, `data found successfully`, result, true, false)
+//     } else {
+//       return createResponse(res, 404, `No data found`, [], false, true)
+//     }
+//   } catch (error) {
+//     console.error("Error in addapController:", error);
+//     return res.status(500).json({ message: "Internal server error" });
+//   }
+// };
 export const GetaddapByPatientController = async (req: any, res: any) => {
-  try {
-    const { patientId } = req.query;
-    const result = await AppointmentTbl.find({ where: { patientId: patientId } })
-    if (result?.length > 0) {
-      return createResponse(res, 200, `data found successfully`, result, true, false)
-    } else {
-      return createResponse(res, 404, `No data found`, [], false, true)
-    }
-  } catch (error) {
-    console.error("Error in addapController:", error);
-    return res.status(500).json({ message: "Internal server error" });
-  }
+      const queryBuilder= AppointmentTbl.createQueryBuilder('apptbl')
+      .select([
+        "apptbl.*",
+        // "patient.*"
+      ])
+      .leftJoin(Patient,"patient","apptbl.patientId=patient.uuid")
+
+      const result=await queryBuilder.getRawMany()
+      console.log(result,"@@@@");
+      
+      
+      res.send(result)
 };
