@@ -7,7 +7,7 @@ export const getAppByAdmin = async (req: any, res: any) => {
   
   const queryBuilder = AppointmentTbl.createQueryBuilder('apptbl')
     .select([
-      "patient.name","patient.email",//Patient ka data nikal rhe hai
+      "patient.name","patient.email",  "patient.profile", "patient.gender", "patient.age","patient.bloodGroup", //Patient ka data nikal rhe hai
       "department.name", "department.name",//Department ka data nikal rhe hai
       "doctor.name", "doctor.fees", "doctor.profile", "doctor.specialist",
       "apptbl.id", "apptbl.disease", "apptbl.symptoms", "apptbl.status", "apptbl.appointmentType", "apptbl.date", "apptbl.startTime", "apptbl.payment", "apptbl.createdAt"
