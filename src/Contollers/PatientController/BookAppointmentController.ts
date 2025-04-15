@@ -3,6 +3,7 @@ import { Doctor } from "../../Entities/DoctorTbl";
 import { AppointmentTbl } from "../../Entities/AppointmentTbl";
 import { createResponse } from "../../Helpers/createResponse";
 import { Patient } from "../../Entities/PatientTbl";
+import { Department } from "../../Entities/DepartmentTbl";
 
 export const addapController = async (req: any, res: any) => {
   try {
@@ -39,7 +40,7 @@ export const addapController = async (req: any, res: any) => {
       // return res.status(409).json({
       //   message: `Doctor already has an appointment. Try after ${apptEndFormatted}`,
       // });
-      return createResponse(res, 409, `Doctor already has an appointment. Try after ${apptEndFormatted}`, [], false, true) 
+      return createResponse(res, 409, `Doctor already has an appointment. Try after ${apptEndFormatted}`, [], false, true)
     }
     // Create new appointment
     const newAppointment = new AppointmentTbl();
@@ -82,16 +83,25 @@ export const addapController = async (req: any, res: any) => {
 //   }
 // };
 export const GetaddapByPatientController = async (req: any, res: any) => {
-      const queryBuilder= AppointmentTbl.createQueryBuilder('apptbl')
-      .select([
-        "apptbl.*",
-        // "patient.*"
-      ])
-      .leftJoin(Patient,"patient","apptbl.patientId=patient.id")
+  const {patientId}=req.query;
+  const queryBuilder = AppointmentTbl.createQueryBuilder('apptbl')
+    .select([
+      "patient.name","patient.email",//Patient ka data nikal rhe hai
+      "department.name", "department.name",//Department ka data nikal rhe hai
+      "doctor.name", "doctor.fees", "doctor.profile", "doctor.specialist",
+      "apptbl.id", "apptbl.disease", "apptbl.symptoms", "apptbl.status", "apptbl.appointmentType", "apptbl.date", "apptbl.startTime", "apptbl.payment", "apptbl.createdAt"
+    ])
+    .leftJoin(Patient, "patient", `apptbl.patientId=patient.id::varchar`)
+    .leftJoin(Department, "department", `apptbl.departmentId=department.id::varchar`)
+    .leftJoin(Doctor, "doctor", `apptbl.doctorId=doctor.id::varchar`)
+    .where('apptbl.patientId=:patientId',{patientId:patientId})
+    // .orWhere()
+    // .limit(1)
+    // .offset(2)
+    // .orderBy('apptbl.createdAt',"ASC")
+    // .addOrderBy
+  const result = await queryBuilder.getRawMany()
 
-      const result=await queryBuilder.getRawMany()
-      console.log(result,"@@@@");
-      
-      
-      res.send(result)
+
+  res.send(result)
 };
