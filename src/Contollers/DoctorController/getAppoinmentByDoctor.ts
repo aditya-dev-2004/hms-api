@@ -15,7 +15,7 @@ export const getAppoinmentByDoctor = async (req: any, res: any) => {
     .leftJoin(Patient, "patient", `apptbl.patientId=patient.id::varchar`)
     .leftJoin(Department, "department", `apptbl.departmentId=department.id::varchar`)
     .leftJoin(Doctor, "doctor", `apptbl.doctorId=doctor.id::varchar`)
-    .where('apptbl.doctorId=:doctorId',{doctorId:doctorId})
+    .where('apptbl.doctorId=:doctorId',{doctorId})
     // .orWhere()
     // .limit(1)
     // .offset(2)
