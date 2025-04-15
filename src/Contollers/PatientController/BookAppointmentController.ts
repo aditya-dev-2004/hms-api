@@ -83,10 +83,10 @@ export const addapController = async (req: any, res: any) => {
 //   }
 // };
 export const GetaddapByPatientController = async (req: any, res: any) => {
-  const {patientId}=req.query;
+  const { patientId } = req.query;
   const queryBuilder = AppointmentTbl.createQueryBuilder('apptbl')
     .select([
-      "patient.name","patient.email",//Patient ka data nikal rhe hai
+      "patient.name", "patient.email",//Patient ka data nikal rhe hai
       "department.name", "department.name",//Department ka data nikal rhe hai
       "doctor.name", "doctor.fees", "doctor.profile", "doctor.specialist",
       "apptbl.id", "apptbl.disease", "apptbl.symptoms", "apptbl.status", "apptbl.appointmentType", "apptbl.date", "apptbl.startTime", "apptbl.payment", "apptbl.createdAt"
@@ -94,12 +94,12 @@ export const GetaddapByPatientController = async (req: any, res: any) => {
     .leftJoin(Patient, "patient", `apptbl.patientId=patient.id::varchar`)
     .leftJoin(Department, "department", `apptbl.departmentId=department.id::varchar`)
     .leftJoin(Doctor, "doctor", `apptbl.doctorId=doctor.id::varchar`)
-    .where('apptbl.patientId=:patientId',{patientId:patientId})
-    // .orWhere()
-    // .limit(1)
-    // .offset(2)
-    // .orderBy('apptbl.createdAt',"ASC")
-    // .addOrderBy
+    .where('apptbl.patientId=:patientId', { patientId: patientId })
+  // .orWhere()
+  // .limit(1)
+  // .offset(2)
+  // .orderBy('apptbl.createdAt',"ASC")
+  // .addOrderBy
   const result = await queryBuilder.getRawMany()
 
 
